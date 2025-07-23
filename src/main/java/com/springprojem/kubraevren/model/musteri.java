@@ -5,9 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import lombok.Data;  // <-- BU YOK!
-
-    //Musteri modeli → id, ad, email, sifre gibi alanlar
+import lombok.Data;  
 
 
 @Data

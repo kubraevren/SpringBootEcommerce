@@ -1,23 +1,37 @@
 package com.springprojem.kubraevren.controller;
-
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.springprojem.kubraevren.service.musteriService;
 
 import com.springprojem.kubraevren.model.musteri;
 
-@RestController
-@RequestMapping("/musteri")
+@Controller
 public class musteriController {
-     @Autowired
-    private musteriService musteriService;
+
+    @Autowired
+ private musteriService musteriService;
+
+ //http://localhost:8080/kayit
+
+
+    @GetMapping("/kayit") 
+    public String kayit() {
+    return "kayitOl"; 
+     }
+
+     @GetMapping("/giris") 
+     public String giris() {
+     return "girisYap"; 
+      }
 
     @PostMapping("/kayit")
     public ResponseEntity<musteri> kayit(@RequestBody musteri musteri) {
@@ -26,6 +40,7 @@ public class musteriController {
     }
 
     @PostMapping("/giris")
+    @ResponseBody 
     public ResponseEntity<?> giris(@RequestBody Map<String, String> giris) {
         String email = giris.get("email");
         String sifre = giris.get("sifre");
@@ -38,10 +53,3 @@ public class musteriController {
     }
 }
 
-/*
- * Müşteri kayıt
-
-Müşteri giriş
-
-Ürünleri listele
- */

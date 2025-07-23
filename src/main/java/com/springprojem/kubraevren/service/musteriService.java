@@ -18,21 +18,6 @@ public class musteriService {
         return musteriRepository.save(musteri);
     }
 
-
-
-   /*  public Optional<musteri> girisYap(String email, String sifre) {
-        // Test verisi (veritabanı bağlanmadan)
-        if (email.equals("test@mail.com") && sifre.equals("1234")) {
-            musteri testMusteri = new musteri();
-            testMusteri.setEmail(email);
-            testMusteri.setSifre(sifre);
-            return Optional.of(testMusteri);
-        }
-        return Optional.empty();
-    }*/
-
-    
-
     
      public Optional<musteri> girisYap(String email, String sifre) {
         Optional<musteri> musteri = musteriRepository.findByEmail(email);
