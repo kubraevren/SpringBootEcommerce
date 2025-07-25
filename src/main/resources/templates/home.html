@@ -1,136 +1,861 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Modern E-Ticaret</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
+    rel="stylesheet">
+
+  <!-- TEMİZLENMİŞ CSS DOSYASI -->
   <link rel="stylesheet" href="css/home.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <title>Türkiye'nin Online Alışveriş Sitesi</title>
 </head>
+
 <body>
 
-  <main class="container">
-    <header class="page-header">
-      <h1>Ürünler</h1>
-      <p>Kaliteli ürünler, sade bir tasarımla.</p>
-    </header>
+  <!-- Navbar - Temizlenmiş Yapı -->
+  <div class="navbar-container">
+    <div class="navbar-inner">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid justify-content-between">
+          
+          <!-- Logo -->
+          <div class="navbar-brand">
+            <a href="anasayfa">
+              <img height="60px" src="images/logop.png" alt="Logo">
+            </a>
+          </div>
 
-    <section class="product-grid">
-      <div class="product-card">
-        <img src="https://via.placeholder.com/250x250.png?text=Ürün+1" alt="Ürün 1" />
-        <h2>Minimal Tişört</h2>
-        <p class="price">₺129</p>
-        <button>Sepete Ekle</button>
-      </div>
+          <!-- Arama Kutusu -->
+          <div class="search-container">
+            <form class="d-flex" role="search">
+              <input class="search-input" type="search"
+                placeholder="Aradığınız ürün, kategori veya markayı yazınız" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
+          </div>
 
-      <div class="product-card">
-        <img src="../static/img/flowers2.jpg" alt="Ürün 2" />
-        <h2>Şık Pantolon</h2>
-        <p class="price">₺249</p>
-        <button>Sepete Ekle</button>
-      </div>
+          <!-- Navbar Toggle ve Menü -->
+          <div class="navbar-menu">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
 
-      <div class="product-card">
-        <img src="../static/img/flowers5.jpg" alt="Ürün 3" />
-        <h2>Günlük Ayakkabı</h2>
-        <p class="price">₺399</p>
-        <button>Sepete Ekle</button>
-      </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                
+                <!-- Kullanıcı Giriş Durumuna Göre Menü -->
+                <div th:if="${user != null}" class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Hoş geldin, <b th:text="${user.kullaniciAdi}">Kullanıcı Adı</b>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" th:href="@{/sepetim}">Sepetim</a></li>
+                    <li><a class="dropdown-item" th:href="@{/profile}">Kullanıcı Ayarları</a></li>
+                    <li><a class="dropdown-item" th:href="@{/odeme}">Satış</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" th:href="@{/cikisYap}">Çıkış</a></li>
+                  </ul>
+                </div>
 
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
-      </div>
+                <div th:if="${user == null}" class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownVisitor" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Hesap
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownVisitor">
+                    <li><a class="dropdown-item" th:href="@{/girisYap}">Giriş Yap</a></li>
+                    <li><a class="dropdown-item" th:href="@{/kayitOl}">Kayıt Ol</a></li>
+                  </ul>
+                </div>
 
-      <div class="product-card">
-        <img src="img/flowers4" alt="Ürün 4" />
-        <h2>Rahat Ceket</h2>
-        <p class="price">₺329</p>
-        <button>Sepete Ekle</button>
+                <!-- Admin Giriş -->
+                <li class="nav-item">
+                  <a class="nav-link" href="stokgiris">
+                    <i class="fa fa-sign-in-alt"></i> Admin Giriş
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Kategori Menüsü - Temizlenmiş Mega Menü -->
+  <div class="category-menu">
+    
+    <!-- Kadın Kategorisi -->
+    <div class="category-item">
+      <a class="category-link" href="#">Kadın</a>
+      <div class="dropdown-menu">
+        <div class="dropdown-content">
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Giyim</a></li>
+              <li><a href="#">Elbise</a></li>
+              <li><a href="#">Tişört</a></li>
+              <li><a href="#">Gömlek</a></li>
+              <li><a href="#">Kot Pantolon</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Ayakkabı</a></li>
+              <li><a href="#">Topuklu</a></li>
+              <li><a href="#">Sneaker</a></li>
+            </ul>
+            <ul>
+              <li><a href="#" class="category-title">Aksesuar & Çanta</a></li>
+              <li><a href="#">Çanta</a></li>
+              <li><a href="#">Saat</a></li>
+              <li><a href="#">Takı</a></li>
+              <li><a href="#">Cüzdan</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">İç Giyim</a></li>
+              <li><a href="#">Pijama Takımı</a></li>
+              <li><a href="#">Çorap</a></li>
+              <li><a href="#">Korse</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Erkek Kategorisi -->
+    <div class="category-item">
+      <a class="category-link" href="#">Erkek</a>
+      <div class="dropdown-menu">
+        <div class="dropdown-content">
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Giyim</a></li>
+              <li><a href="#">Tişört</a></li>
+              <li><a href="#">Gömlek</a></li>
+              <li><a href="#">Eşofman</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Ayakkabı</a></li>
+              <li><a href="#">Spor Ayakkabı</a></li>
+              <li><a href="#">Kar Botu</a></li>
+              <li><a href="#">Deri Ayakkabı</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Çanta</a></li>
+              <li><a href="#">Sırt Çantası</a></li>
+              <li><a href="#">Spor Çanta</a></li>
+              <li><a href="#">Laptop Çantası</a></li>
+            </ul>
+            <ul>
+              <li><a href="#" class="category-title">Saat & Aksesuar</a></li>
+              <li><a href="#">Saat</a></li>
+              <li><a href="#">Güneş Gözlüğü</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">İç Giyim</a></li>
+              <li><a href="#">Çorap</a></li>
+              <li><a href="#">Pijama</a></li>
+              <li><a href="#">Atlet</a></li>
+              <li><a href="#">İçlik</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anne & Çocuk Kategorisi -->
+    <div class="category-item">
+      <a class="category-link" href="#">Anne & Çocuk</a>
+      <div class="dropdown-menu">
+        <div class="dropdown-content">
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Bebek</a></li>
+              <li><a href="#">Bebek Takımları</a></li>
+              <li><a href="#">Ayakkabı</a></li>
+              <li><a href="#">Hastane Çıkışı</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Kız Çocuk</a></li>
+              <li><a href="#">Elbise</a></li>
+              <li><a href="#">Sweatshirt</a></li>
+              <li><a href="#">Spor Ayakkabı</a></li>
+              <li><a href="#">Eşofman</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Beslenme & Emzirme</a></li>
+              <li><a href="#">Biberon & Emzik</a></li>
+              <li><a href="#">Göğüs Pompası</a></li>
+              <li><a href="#">Mama Sandalyesi</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ev & Yaşam Kategorisi -->
+    <div class="category-item">
+      <a class="category-link" href="#">Ev & Yaşam</a>
+      <div class="dropdown-menu">
+        <div class="dropdown-content">
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Dekorasyon</a></li>
+              <li><a href="#">Ev Dekorasyonu</a></li>
+              <li><a href="#">Aydınlatma</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Mobilya</a></li>
+              <li><a href="#">Oturma Grupları</a></li>
+              <li><a href="#">Yatak Odası</a></li>
+              <li><a href="#">Yemek Odası</a></li>
+              <li><a href="#">Çalışma Odası</a></li>
+              <li><a href="#">Çocuk Odası</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Elektronik</a></li>
+              <li><a href="#">Bebek Elektroniği</a></li>
+              <li><a href="#">Ev Elektroniği</a></li>
+              <li><a href="#">Aksesuarlar</a></li>
+              <li><a href="#">Akıllı Ev</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kozmetik Kategorisi -->
+    <div class="category-item">
+      <a class="category-link" href="#">Kozmetik</a>
+      <div class="dropdown-menu">
+        <div class="dropdown-content">
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Cilt Bakımı</a></li>
+              <li><a href="#">Serum</a></li>
+              <li><a href="#">Yüz Kremi</a></li>
+              <li><a href="#">Maskeler</a></li>
+              <li><a href="#">Tonikler</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Makyaj</a></li>
+              <li><a href="#">Fondöten</a></li>
+              <li><a href="#">Maskara</a></li>
+              <li><a href="#">Eyeliner</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Saç Bakımı</a></li>
+              <li><a href="#">Şampuan</a></li>
+              <li><a href="#">Saç Kremi</a></li>
+              <li><a href="#">Saç Maskesi</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ayakkabı Kategorisi -->
+    <div class="category-item">
+      <a class="category-link" href="#">Ayakkabı</a>
+      <div class="dropdown-menu">
+        <div class="dropdown-content">
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Bebek Ayakkabısı</a></li>
+              <li><a href="#">Spor Ayakkabı</a></li>
+              <li><a href="#">Deri Ayakkabı</a></li>
+              <li><a href="#">Topuklu Ayakkabı</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Erkek Ayakkabısı</a></li>
+              <li><a href="#">Spor Ayakkabı</a></li>
+              <li><a href="#">Deri Ayakkabı</a></li>
+              <li><a href="#">Günlük Ayakkabı</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Elektronik Kategorisi -->
+    <div class="category-item">
+      <a class="category-link" href="#">Elektronik</a>
+      <div class="dropdown-menu">
+        <div class="dropdown-content">
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Mobilya Elektroniği</a></li>
+              <li><a href="#">LED Aydınlatma</a></li>
+              <li><a href="#">Akıllı Saatler</a></li>
+            </ul>
+          </div>
+          <div class="dropdown-column">
+            <ul>
+              <li><a href="#" class="category-title">Ev Elektroniği</a></li>
+              <li><a href="#">TV & Ses Sistemleri</a></li>
+              <li><a href="#">Beyaz Eşyalar</a></li>
+              <li><a href="#">Küçük Ev Aletleri</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Çok Satanlar ve Flaş Ürünler -->
+    <div class="category-item">
+      <a class="category-link" href="#">
+        Çok Satanlar
+        <span class="badge">★Yeni</span>
+      </a>
+    </div>
+    
+    <div class="category-item">
+      <a class="category-link" href="#">
+        Flaş Ürünler
+        <span class="badge">★Yeni</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Ürün Kartları - Temizlenmiş Grid -->
+  <div class="product-grid">
+    
+    <!-- Örnek Ürün Kartı -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="img/flowers2.jpg" alt="HERBAL Sırt Çantası">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">HERBAL Sırt Çantası</h3>
+        <div class="product-rating">
+          <span>4.7</span>
+          <span class="rating-stars">★★★★★</span>
+          <span>(12456)</span>
+        </div>
+        <div class="product-price">149,99 TL</div>
+      </div>
+      <a class="product-button" th:href="@{/urunDetay}">Detay Gör</a>
+    </div>
+
+    <!-- MAC Likit Ruj -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="img/flowers4.jpg" alt="MAC Likit Ruj">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">MAC Likit Ruj</h3>
+        <div class="product-rating">
+          <span>4.7</span>
+          <span class="rating-stars">★★★★★</span>
+          <span>(12456)</span>
+        </div>
+        <div class="product-price">689,99 TL</div>
+      </div>
+      <a class="product-button" href="urunDetay">Detay Gör</a>
+    </div>
+
+    <!-- Adidas Spor Ayakkabı -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="img/flowers7.jpg" alt="Adidas Kırmızı Spor Ayakkabı">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Adidas Kırmızı Spor Ayakkabı</h3>
+        <div class="product-rating">
+          <span>4.5</span>
+          <span class="rating-stars">★★★★★</span>
+          <span>(3452)</span>
+        </div>
+        <div class="product-price">779,99 TL</div>
+      </div>
+      <a class="product-button" href="urunDetay">Detay Gör</a>
+    </div>
+
+    <!-- Xiaomi Akıllı Saat -->
+    <div class="product-card">
+      <div class="product-image">
+        <img src="img/flowers5.jpg" alt="Xiaomi Akıllı Saat">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">Xiaomi Akıllı Saat</h3>
+        <div class="product-rating">
+          <span>4.8</span>
+          <span class="rating-stars">★★★★★</span>
+          <span>(6721)</span>
+        </div>
+        <div class="product-price">109,99 TL</div>
+      </div>
+      <a class="product-button" href="urunDetay">Detay Gör</a>
+    </div>
+
+    <!-- Thymeleaf ile dinamik ürünler -->
+    <div class="product-card" th:each="urun : ${urunler}">
+      <div class="product-image">
+        <a th:href="@{/urunDetay/{urunId}(urunId=${urun.urunId})}">
+          <img th:src="@{${urun.imageUrl}}" th:alt="${urun.urunAdi}" alt="Ürün Resmi">
+        </a>
+      </div>
+      <div class="product-info">
+        <h3 class="product-title" th:text="${urun.urunAdi}">Ürün Adı</h3>
+        <div class="product-rating">
+          <span>4.5</span>
+          <span class="rating-stars">★★★★★</span>
+          <span>(1234)</span>
+        </div>
+        <div class="product-price" th:text="${urun.fiyat} + ' TL'">Fiyat</div>
+      </div>
+      <a class="product-button" th:href="@{/urunDetay/{urunId}(urunId=${urun.urunId})}">Detay Gör</a>
+    </div>
+
+  </div>
+
+  <!-- Promosyon Görselleri -->
+  <div class="container text-center mb-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <a href="#">
+          <img class="img-thumbnail" src="img/1bir.png" alt="Promosyon 1">
+        </a>
+      </div>
+      <div class="col">
+        <a href="#">
+          <img class="img-thumbnail" src="img/2 (2).png" alt="Promosyon 2">
+        </a>
+      </div>
+      <div class="col">
+        <a href="#">
+          <img class="img-thumbnail" src="img/3 (2).png" alt="Promosyon 3">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- İlginizi Çekebilir Bölümü -->
+  <main>
+    <div class="text-center" style="background: white; padding: 2rem; margin: 2rem; border-radius: 8px;">
+      <h4 style="margin-bottom: 1rem;">Bunlar da İlginizi Çekebilir</h4>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">iPhone 15</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Flo</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Watsons</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">GS Store</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Airfryer</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Dyson Süpürge</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Stanley Termos</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Koltuk Takımı</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Atasay</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Bargello</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Cep Telefonu</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">UGG</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Nike Air Force</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer - Temizlenmiş -->
+  <footer class="footer">
+    <div class="footer-content">
+      
+      <div class="footer-section">
+        <h4>Trendyol</h4>
+        <ul>
+          <li><a href="#">Biz Kimiz</a></li>
+          <li><a href="#">Kariyer</a></li>
+          <li><a href="#">İletişim</a></li>
+          <li><a href="#">Trendyol'da Satış Yap</a></li>
+        </ul>
       </div>
       
-    </section>
-  </main>
+      <div class="footer-section">
+        <h4>About us</h4>
+        <ul>
+          <li><a href="#">Who we are</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">Sustainability</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Kampanyalar</h4>
+        <ul>
+          <li><a href="#">Aktif Kampanyalar</a></li>
+          <li><a href="#">Elite Üyelik</a></li>
+          <li><a href="#">Hediye Fikirleri</a></li>
+          <li><a href="#">Trendyol Fırsatları</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Yardım</h4>
+        <ul>
+          <li><a href="#">Sıkça Sorulan Sorular</a></li>
+          <li><a href="#">Canlı Yardım</a></li>
+          <li><a href="#">Nasıl İade Edebilirim</a></li>
+          <li><a href="#">İşlem Rehberi</a></li>
+        </ul>
+      </div>
+      
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Butonu -->
+  <button id="scrollToTopBtn" class="scroll-to-top" title="Üste Çık">
+    <i class="fa fa-arrow-up"></i>
+  </button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+  <!-- Modern JavaScript -->
+  <script>
+    // Scroll to Top Butonu - Modern yaklaşım
+    class ScrollToTop {
+      constructor() {
+        this.button = document.getElementById('scrollToTopBtn');
+        this.init();
+      }
+
+      init() {
+        // Scroll event listener - throttled
+        let isScrolling = false;
+        window.addEventListener('scroll', () => {
+          if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+              this.handleScroll();
+              isScrolling = false;
+            });
+            isScrolling = true;
+          }
+        });
+
+        // Click event listener
+        this.button.addEventListener('click', () => this.scrollToTop());
+      }
+
+      handleScroll() {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        
+        if (scrollTop > 300) {
+          this.button.classList.add('visible');
+        } else {
+          this.button.classList.remove('visible');
+        }
+      }
+
+      scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+
+    // Loading Animation için
+    class LoadingAnimation {
+      static addToElements(selector) {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach((el, index) => {
+          el.style.animation = `fadeIn 0.6s ease-out ${index * 0.1}s both`;
+        });
+      }
+    }
+
+    // Intersection Observer for lazy loading
+    class LazyLoader {
+      constructor() {
+        this.imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src;
+              img.classList.remove('loading');
+              observer.unobserve(img);
+            }
+          });
+        });
+
+        this.init();
+      }
+
+      init() {
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        lazyImages.forEach(img => {
+          img.classList.add('loading');
+          this.imageObserver.observe(img);
+        });
+      }
+    }
+
+    // Dropdown menü gelişmiş kontrolü
+    class MegaMenu {
+      constructor() {
+        this.menuItems = document.querySelectorAll('.category-item');
+        this.activeDropdown = null;
+        this.init();
+      }
+
+      init() {
+        this.menuItems.forEach(item => {
+          const dropdown = item.querySelector('.dropdown-menu');
+          
+          if (dropdown) {
+            // Mouse enter
+            item.addEventListener('mouseenter', () => {
+              this.showDropdown(dropdown);
+            });
+
+            // Mouse leave
+            item.addEventListener('mouseleave', () => {
+              this.hideDropdown(dropdown);
+            });
+
+            // Keyboard navigation
+            item.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.toggleDropdown(dropdown);
+              }
+            });
+          }
+        });
+
+        // Click outside to close
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.category-item')) {
+            this.hideAllDropdowns();
+          }
+        });
+      }
+
+      showDropdown(dropdown) {
+        this.hideAllDropdowns();
+        dropdown.style.display = 'block';
+        setTimeout(() => {
+          dropdown.style.opacity = '1';
+          dropdown.style.transform = 'translateY(0)';
+        }, 10);
+        this.activeDropdown = dropdown;
+      }
+
+      hideDropdown(dropdown) {
+        dropdown.style.opacity = '0';
+        dropdown.style.transform = 'translateY(-10px)';
+        setTimeout(() => {
+          dropdown.style.display = 'none';
+        }, 300);
+        this.activeDropdown = null;
+      }
+
+      toggleDropdown(dropdown) {
+        if (this.activeDropdown === dropdown) {
+          this.hideDropdown(dropdown);
+        } else {
+          this.showDropdown(dropdown);
+        }
+      }
+
+      hideAllDropdowns() {
+        this.menuItems.forEach(item => {
+          const dropdown = item.querySelector('.dropdown-menu');
+          if (dropdown) {
+            this.hideDropdown(dropdown);
+          }
+        });
+      }
+    }
+
+    // Search functionality
+    class SearchHandler {
+      constructor() {
+        this.searchInput = document.querySelector('.search-input');
+        this.searchForm = document.querySelector('form[role="search"]');
+        this.init();
+      }
+
+      init() {
+        if (this.searchInput) {
+          // Real-time search suggestions (placeholder)
+          let searchTimeout;
+          this.searchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+              this.handleSearch(e.target.value);
+            }, 300);
+          });
+
+          // Form submit
+          if (this.searchForm) {
+            this.searchForm.addEventListener('submit', (e) => {
+              e.preventDefault();
+              this.performSearch(this.searchInput.value);
+            });
+          }
+        }
+      }
+
+      handleSearch(query) {
+        if (query.length > 2) {
+          console.log('Searching for:', query);
+          // Burada API çağrısı yapılabilir
+        }
+      }
+
+      performSearch(query) {
+        if (query.trim()) {
+          console.log('Performing search for:', query);
+          // Burada arama sayfasına yönlendirme yapılabilir
+          window.location.href = `/search?q=${encodeURIComponent(query)}`;
+        }
+      }
+    }
+
+    // Product card interactions
+    class ProductCards {
+      constructor() {
+        this.cards = document.querySelectorAll('.product-card');
+        this.init();
+      }
+
+      init() {
+        this.cards.forEach(card => {
+          // Add hover analytics
+          card.addEventListener('mouseenter', () => {
+            this.trackHover(card);
+          });
+
+          // Add click analytics
+          const button = card.querySelector('.product-button');
+          if (button) {
+            button.addEventListener('click', (e) => {
+              this.trackClick(card, e);
+            });
+          }
+        });
+      }
+
+      trackHover(card) {
+        const productName = card.querySelector('.product-title')?.textContent;
+        console.log('Product hovered:', productName);
+        // Analytics tracking code here
+      }
+
+      trackClick(card, event) {
+        const productName = card.querySelector('.product-title')?.textContent;
+        console.log('Product clicked:', productName);
+        // Analytics tracking code here
+      }
+    }
+
+    // Performance monitoring
+    class PerformanceMonitor {
+      static logPageLoad() {
+        window.addEventListener('load', () => {
+          const loadTime = performance.now();
+          console.log(`Page loaded in ${Math.round(loadTime)}ms`);
+        });
+      }
+
+      static logCoreWebVitals() {
+        // Largest Contentful Paint
+        new PerformanceObserver((entryList) => {
+          const entries = entryList.getEntries();
+          const lastEntry = entries[entries.length - 1];
+          console.log('LCP:', lastEntry.startTime);
+        }).observe({ entryTypes: ['largest-contentful-paint'] });
+
+        // First Input Delay
+        new PerformanceObserver((entryList) => {
+          const firstInput = entryList.getEntries()[0];
+          console.log('FID:', firstInput.processingStart - firstInput.startTime);
+        }).observe({ entryTypes: ['first-input'] });
+      }
+    }
+
+    // Initialize everything when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize all components
+      new ScrollToTop();
+      new MegaMenu();
+      new SearchHandler();
+      new ProductCards();
+      new LazyLoader();
+      
+      // Add loading animations
+      LoadingAnimation.addToElements('.product-card');
+      
+      // Performance monitoring
+      PerformanceMonitor.logPageLoad();
+      PerformanceMonitor.logCoreWebVitals();
+      
+      console.log('Modern e-commerce site initialized successfully! 🚀');
+    });
+
+    // Error handling
+    window.addEventListener('error', (e) => {
+      console.error('JavaScript error:', e.error);
+    });
+
+    // Service Worker registration (for PWA capabilities)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('SW registered: ', registration);
+          })
+          .catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  </script>
 
 </body>
 </html>
