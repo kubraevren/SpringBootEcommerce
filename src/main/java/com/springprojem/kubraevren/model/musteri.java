@@ -20,7 +20,7 @@ public class musteri {
     private String email;
     private String sifre;
 
-    // Getter ve Setter'lar
+
 }
 
 

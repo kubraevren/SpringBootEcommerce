@@ -33,6 +33,14 @@ public class musteriController {
      return "girisYap"; 
       }
 
+
+
+      @GetMapping("/home") 
+      public String home() {
+      return "home"; 
+       }
+
+
     @PostMapping("/kayit")
     public ResponseEntity<musteri> kayit(@RequestBody musteri musteri) {
         musteri kaydedilen = musteriService.kaydet(musteri);
@@ -42,10 +50,10 @@ public class musteriController {
     @PostMapping("/giris")
     @ResponseBody 
     public ResponseEntity<?> giris(@RequestBody Map<String, String> giris) {
-        String email = giris.get("email");
+        String ad = giris.get("ad"); 
         String sifre = giris.get("sifre");
 
-        Optional<musteri> musteri = musteriService.girisYap(email, sifre);
+        Optional<musteri> musteri = musteriService.girisYap(ad, sifre);
         if (musteri.isPresent()) {
             return ResponseEntity.ok(musteri.get());
         }

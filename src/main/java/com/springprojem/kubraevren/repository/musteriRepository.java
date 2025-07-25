@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.springprojem.kubraevren.model.musteri;
 @Repository
 public interface musteriRepository extends JpaRepository<musteri, Long> {
-    Optional<musteri> findByEmail(String email);
+
+
+    Optional<musteri> findByAdAndSifre(String ad, String sifre);
 }
 
 

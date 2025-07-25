@@ -19,11 +19,10 @@ public class musteriService {
     }
 
     
-     public Optional<musteri> girisYap(String email, String sifre) {
-        Optional<musteri> musteri = musteriRepository.findByEmail(email);
-        if (musteri.isPresent() && musteri.get().getSifre().equals(sifre)) {
-            return musteri;
-        }
-        return Optional.empty();
+    public Optional<musteri> girisYap(String ad, String sifre) {
+        Optional<musteri> musteri = musteriRepository.findByAdAndSifre(ad, sifre);
+        return musteri;
     }
+    
+    
 }
