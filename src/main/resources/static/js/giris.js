@@ -13,7 +13,7 @@ document.getElementById("girisYapButonu").addEventListener("click", function (e)
 
     const data = { ad, sifre};
 
-    fetch("/giris", {
+    fetch("/musterigiris", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -29,11 +29,11 @@ document.getElementById("girisYapButonu").addEventListener("click", function (e)
     })
     .then(data => {
         console.log("Sunucudan gelen kullanıcı:", data);
-        window.location.href = "/home";
+        window.location.href = "/";
     })
     
     .then(data => {
-        window.location.href = "/home"; 
+        window.location.href = "/girisYap"; 
     })
     .catch(error => {
         alert("Hata: " + error.message);

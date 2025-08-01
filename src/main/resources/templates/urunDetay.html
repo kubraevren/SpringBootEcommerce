@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title th:text="${urun.urunAdi} + ' - Ürün Detayı'">Ürün Detayı</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      max-width: 900px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      padding: 20px;
+      gap: 30px;
+      margin: auto;
+    }
+
+    .image-section {
+      flex: 1;
+    }
+
+    .image-section img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .info-section {
+      flex: 1.2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .info-section h1 {
+      margin: 0 0 10px 0;
+      font-size: 2rem;
+      color: #222;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #e91e63;
+      margin-bottom: 15px;
+    }
+
+    .description {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .stars {
+      color: #ffc107;
+      font-size: 1.3rem;
+    }
+
+    .score {
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .comments-section {
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+    }
+
+    .comments-section h3 {
+      margin-bottom: 10px;
+    }
+
+    .comment {
+      background-color: #f9f9f9;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      color: #444;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Ürün Fotoğrafı -->
+    <div class="image-section">
+      <img th:src="${urun.resimUrl}" th:alt="${urun.urunAdi}" alt="Ürün Resmi" />
+    </div>
+
+    <!-- Ürün Bilgileri -->
+    <div class="info-section">
+      <h1 th:text="${urun.urunAdi}">Ürün Adı</h1>
+
+      <div class="price" th:text="${urun.fiyat} + ' TL'">Fiyat</div>
+
+      <div class="description" th:text="${urun.aciklama}">
+        Ürün açıklaması buraya gelecek...
+      </div>
+
+      <div class="rating">
+        <div class="stars" th:text="${#strings.repeat('★', T(java.lang.Math).round(urun.puan)) + #strings.repeat('☆', 5 - T(java.lang.Math).round(urun.puan))}">
+          ★★★★☆
+        </div>
+        <div class="score" th:text="${urun.puan}">4.5</div>
+      </div>
+
+      <div class="comments-section">
+        <h3>Yorumlar</h3>
+
+        <!-- Basit olarak tek yorum property’si var görünüyor, istersen buraya döngü ekleyebilirsin -->
+        <div class="comment" th:text="${urun.yorum != null ? urun.yorum : 'Henüz yorum yok.'}">
+          Ürün yorumu buraya gelecek.
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

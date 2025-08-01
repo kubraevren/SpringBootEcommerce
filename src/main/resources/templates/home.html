@@ -34,7 +34,7 @@
     <div class="navbar-inner">
       <nav class="navbar navbar-expand-lg">
         <div class="container-fluid justify-content-between">
-          
+
           <!-- Logo -->
           <div class="navbar-brand">
             <a href="anasayfa">
@@ -45,8 +45,8 @@
           <!-- Arama Kutusu -->
           <div class="search-container">
             <form class="d-flex" role="search">
-              <input class="search-input" type="search"
-                placeholder="Aradığınız ürün, kategori veya markayı yazınız" aria-label="Search">
+              <input class="search-input" type="search" placeholder="Aradığınız ürün, kategori veya markayı yazınız"
+                aria-label="Search">
               <button class="btn btn-outline-success" type="submit">
                 <i class="fa fa-search"></i>
               </button>
@@ -63,7 +63,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                
+
                 <!-- Kullanıcı Giriş Durumuna Göre Menü -->
                 <div th:if="${user != null}" class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -74,7 +74,9 @@
                     <li><a class="dropdown-item" th:href="@{/sepetim}">Sepetim</a></li>
                     <li><a class="dropdown-item" th:href="@{/profile}">Kullanıcı Ayarları</a></li>
                     <li><a class="dropdown-item" th:href="@{/odeme}">Satış</a></li>
-                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
                     <li><a class="dropdown-item" th:href="@{/cikisYap}">Çıkış</a></li>
                   </ul>
                 </div>
@@ -92,7 +94,7 @@
 
                 <!-- Admin Giriş -->
                 <li class="nav-item">
-                  <a class="nav-link" href="stokgiris">
+                  <a class="nav-link" href="admin/adminDashboard">
                     <i class="fa fa-sign-in-alt"></i> Admin Giriş
                   </a>
                 </li>
@@ -106,7 +108,7 @@
 
   <!-- Kategori Menüsü - Temizlenmiş Mega Menü -->
   <div class="category-menu">
-    
+
     <!-- Kadın Kategorisi -->
     <div class="category-item">
       <a class="category-link" href="#">Kadın</a>
@@ -353,7 +355,7 @@
         <span class="badge">★Yeni</span>
       </a>
     </div>
-    
+
     <div class="category-item">
       <a class="category-link" href="#">
         Flaş Ürünler
@@ -362,97 +364,60 @@
     </div>
   </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- Ürün Kartları - Temizlenmiş Grid -->
   <div class="product-grid">
-    
-    <!-- Örnek Ürün Kartı -->
-    <div class="product-card">
-      <div class="product-image">
-        <img src="img/flowers2.jpg" alt="HERBAL Sırt Çantası">
-      </div>
-      <div class="product-info">
-        <h3 class="product-title">HERBAL Sırt Çantası</h3>
-        <div class="product-rating">
-          <span>4.7</span>
-          <span class="rating-stars">★★★★★</span>
-          <span>(12456)</span>
-        </div>
-        <div class="product-price">149,99 TL</div>
-      </div>
-      <a class="product-button" th:href="@{/urunDetay}">Detay Gör</a>
-    </div>
 
-    <!-- MAC Likit Ruj -->
-    <div class="product-card">
-      <div class="product-image">
-        <img src="img/flowers4.jpg" alt="MAC Likit Ruj">
-      </div>
-      <div class="product-info">
-        <h3 class="product-title">MAC Likit Ruj</h3>
-        <div class="product-rating">
-          <span>4.7</span>
-          <span class="rating-stars">★★★★★</span>
-          <span>(12456)</span>
-        </div>
-        <div class="product-price">689,99 TL</div>
-      </div>
-      <a class="product-button" href="urunDetay">Detay Gör</a>
-    </div>
 
-    <!-- Adidas Spor Ayakkabı -->
-    <div class="product-card">
-      <div class="product-image">
-        <img src="img/flowers7.jpg" alt="Adidas Kırmızı Spor Ayakkabı">
-      </div>
-      <div class="product-info">
-        <h3 class="product-title">Adidas Kırmızı Spor Ayakkabı</h3>
-        <div class="product-rating">
-          <span>4.5</span>
-          <span class="rating-stars">★★★★★</span>
-          <span>(3452)</span>
-        </div>
-        <div class="product-price">779,99 TL</div>
-      </div>
-      <a class="product-button" href="urunDetay">Detay Gör</a>
-    </div>
-
-    <!-- Xiaomi Akıllı Saat -->
-    <div class="product-card">
-      <div class="product-image">
-        <img src="img/flowers5.jpg" alt="Xiaomi Akıllı Saat">
-      </div>
-      <div class="product-info">
-        <h3 class="product-title">Xiaomi Akıllı Saat</h3>
-        <div class="product-rating">
-          <span>4.8</span>
-          <span class="rating-stars">★★★★★</span>
-          <span>(6721)</span>
-        </div>
-        <div class="product-price">109,99 TL</div>
-      </div>
-      <a class="product-button" href="urunDetay">Detay Gör</a>
-    </div>
-
-    <!-- Thymeleaf ile dinamik ürünler -->
     <div class="product-card" th:each="urun : ${urunler}">
       <div class="product-image">
-        <a th:href="@{/urunDetay/{urunId}(urunId=${urun.urunId})}">
-          <img th:src="@{${urun.imageUrl}}" th:alt="${urun.urunAdi}" alt="Ürün Resmi">
+        <a th:href="@{/urunDetay/{id}(id=${urun.urunId})}">
+          <img th:src="${urun.resimUrl}" th:alt="${urun.urunAdi}" alt="Ürün Resmi">
         </a>
       </div>
+
       <div class="product-info">
         <h3 class="product-title" th:text="${urun.urunAdi}">Ürün Adı</h3>
+
         <div class="product-rating">
-          <span>4.5</span>
+          <span th:text="${urun.puan}">4.5</span>
           <span class="rating-stars">★★★★★</span>
-          <span>(1234)</span>
+          <span th:text="'(' + ${urun.yorumSayisi} + ')'">(1234)</span>
         </div>
+
         <div class="product-price" th:text="${urun.fiyat} + ' TL'">Fiyat</div>
       </div>
-      <a class="product-button" th:href="@{/urunDetay/{urunId}(urunId=${urun.urunId})}">Detay Gör</a>
+
+      <a class="product-button" th:href="@{/urunDetay/{id}(id=${urun.urunId})}">Detay Gör</a>
     </div>
 
+
+
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
   <!-- Promosyon Görselleri -->
   <div class="container text-center mb-4">
@@ -485,14 +450,19 @@
         <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Watsons</a>
         <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">GS Store</a>
         <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Airfryer</a>
-        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Dyson Süpürge</a>
-        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Stanley Termos</a>
-        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Koltuk Takımı</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Dyson
+          Süpürge</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Stanley
+          Termos</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Koltuk
+          Takımı</a>
         <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Atasay</a>
         <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Bargello</a>
-        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Cep Telefonu</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Cep
+          Telefonu</a>
         <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">UGG</a>
-        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Nike Air Force</a>
+        <a href="#" style="text-decoration: none; color: #666; font-size: 0.9rem; transition: color 0.2s;">Nike Air
+          Force</a>
       </div>
     </div>
   </main>
@@ -500,7 +470,7 @@
   <!-- Footer - Temizlenmiş -->
   <footer class="footer">
     <div class="footer-content">
-      
+
       <div class="footer-section">
         <h4>Trendyol</h4>
         <ul>
@@ -510,7 +480,7 @@
           <li><a href="#">Trendyol'da Satış Yap</a></li>
         </ul>
       </div>
-      
+
       <div class="footer-section">
         <h4>About us</h4>
         <ul>
@@ -520,7 +490,7 @@
           <li><a href="#">Sustainability</a></li>
         </ul>
       </div>
-      
+
       <div class="footer-section">
         <h4>Kampanyalar</h4>
         <ul>
@@ -530,7 +500,7 @@
           <li><a href="#">Trendyol Fırsatları</a></li>
         </ul>
       </div>
-      
+
       <div class="footer-section">
         <h4>Yardım</h4>
         <ul>
@@ -540,7 +510,7 @@
           <li><a href="#">İşlem Rehberi</a></li>
         </ul>
       </div>
-      
+
     </div>
   </footer>
 
@@ -582,7 +552,7 @@
 
       handleScroll() {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        
+
         if (scrollTop > 300) {
           this.button.classList.add('visible');
         } else {
@@ -645,7 +615,7 @@
       init() {
         this.menuItems.forEach(item => {
           const dropdown = item.querySelector('.dropdown-menu');
-          
+
           if (dropdown) {
             // Mouse enter
             item.addEventListener('mouseenter', () => {
@@ -827,14 +797,14 @@
       new SearchHandler();
       new ProductCards();
       new LazyLoader();
-      
+
       // Add loading animations
       LoadingAnimation.addToElements('.product-card');
-      
+
       // Performance monitoring
       PerformanceMonitor.logPageLoad();
       PerformanceMonitor.logCoreWebVitals();
-      
+
       console.log('Modern e-commerce site initialized successfully! 🚀');
     });
 
@@ -856,6 +826,11 @@
       });
     }
   </script>
+  <!-- Bootstrap JS ve Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
 
 </body>
+
 </html>

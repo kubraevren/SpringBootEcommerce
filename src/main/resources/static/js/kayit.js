@@ -13,7 +13,7 @@ document.getElementById('kayitOlButonu').addEventListener('click', function (eve
 
    
 
-    fetch('/kayit', {
+    fetch('/musterikayit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
