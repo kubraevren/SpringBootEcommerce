@@ -2,7 +2,7 @@ package com.springprojem.kubraevren.model;
 
 import jakarta.persistence.Entity;
 
-@Entity
+//@Entity
 public class siparis {
     
 }
