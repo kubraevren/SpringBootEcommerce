@@ -36,7 +36,7 @@
       --success: #4ade80;
       --warning: #fbbf24;
       --danger: #f87171;
-      
+
       /* Neutral Colors */
       --white: #ffffff;
       --gray-50: #f9fafb;
@@ -49,12 +49,12 @@
       --gray-700: #374151;
       --gray-800: #1f2937;
       --gray-900: #111827;
-      
+
       /* Gradients */
       --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
       --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #a8edea 100%);
       --gradient-dark: linear-gradient(135deg, var(--gray-800) 0%, var(--gray-900) 100%);
-      
+
       /* Spacing */
       --space-1: 0.25rem;
       --space-2: 0.5rem;
@@ -65,7 +65,7 @@
       --space-8: 2rem;
       --space-10: 2.5rem;
       --space-12: 3rem;
-      
+
       /* Typography */
       --font-xs: 0.75rem;
       --font-sm: 0.875rem;
@@ -73,20 +73,20 @@
       --font-lg: 1.125rem;
       --font-xl: 1.25rem;
       --font-2xl: 1.5rem;
-      
+
       /* Borders & Radius */
       --radius-sm: 0.375rem;
       --radius-md: 0.5rem;
       --radius-lg: 0.75rem;
       --radius-xl: 1rem;
       --radius-full: 9999px;
-      
+
       /* Shadows */
       --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
       --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-      
+
       /* Transitions */
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-fast: all 0.15s ease;
@@ -625,7 +625,7 @@
       .mega-dropdown {
         min-width: 500px;
       }
-      
+
       .product-grid {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       }
@@ -705,6 +705,7 @@
         opacity: 0;
         transform: translateY(30px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -741,7 +742,8 @@
           <!-- Search Container -->
           <div class="search-container">
             <form class="d-flex" role="search">
-              <input class="search-input" type="search" placeholder="Ürün, kategori veya marka ara..." aria-label="Search">
+              <input class="search-input" type="search" placeholder="Ürün, kategori veya marka ara..."
+                aria-label="Search">
               <button type="submit">
                 <i class="fa fa-search"></i>
               </button>
@@ -768,7 +770,9 @@
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="#"><i class="fa fa-sign-in-alt me-2"></i>Giriş Yap</a></li>
                     <li><a class="dropdown-item" href="#"><i class="fa fa-user-plus me-2"></i>Kayıt Ol</a></li>
-                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
                     <li><a class="dropdown-item" href="#"><i class="fa fa-shopping-cart me-2"></i>Sepetim</a></li>
                     <li><a class="dropdown-item" href="#"><i class="fa fa-heart me-2"></i>Favorilerim</a></li>
                   </ul>
@@ -1119,26 +1123,26 @@
     </div> -->
 
     <div class="product-card" th:each="urun : ${urunler}">
-  <div class="product-image">
-    <a th:href="@{/urunDetay/{id}(id=${urun.urunId})}">
-      <img th:src="${urun.resimUrl}" th:alt="${urun.urunAdi}" alt="Ürün Resmi">
-    </a>
-  </div>
+      <div class="product-image">
+        <a th:href="@{/urunDetay/{id}(id=${urun.urunId})}">
+          <img th:src="${urun.resimUrl}" th:alt="${urun.urunAdi}" alt="Ürün Resmi">
+        </a>
+      </div>
 
-  <div class="product-info">
-    <h3 class="product-title" th:text="${urun.urunAdi}">Ürün Adı</h3>
+      <div class="product-info">
+        <h3 class="product-title" th:text="${urun.urunAdi}">Ürün Adı</h3>
 
-    <div class="product-rating">
-      <span th:text="${urun.puan}">4.7</span>
-      <span class="rating-stars">★★★★★</span>
-      <span class="rating-count" th:text="'(' + ${urun.yorumSayisi} + ')'">(567)</span>
+        <div class="product-rating">
+          <span th:text="${urun.puan}">4.7</span>
+          <span class="rating-stars">★★★★★</span>
+          <span class="rating-count" th:text="'(' + ${urun.yorumSayisi} + ')'">(567)</span>
+        </div>
+
+        <div class="product-price" th:text="${urun.fiyat} + ' TL'">899 TL</div>
+
+        <a class="product-button" th:href="@{/sepeteEkle/{id}(id=${urun.urunId})}">Sepete Ekle</a>
+      </div>
     </div>
-
-    <div class="product-price" th:text="${urun.fiyat} + ' TL'">899 TL</div>
-
-    <a class="product-button" th:href="@{/sepeteEkle/{id}(id=${urun.urunId})}">Sepete Ekle</a>
-  </div>
-</div>
 
 
   </div>
@@ -1149,17 +1153,20 @@
       <div class="row g-4">
         <div class="col-md-4">
           <a href="#">
-            <img class="img-thumbnail w-100" src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=400&h=300&fit=crop" alt="Promosyon 1">
+            <img class="img-thumbnail w-100"
+              src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?w=400&h=300&fit=crop" alt="Promosyon 1">
           </a>
         </div>
         <div class="col-md-4">
           <a href="#">
-            <img class="img-thumbnail w-100" src="https://images.unsplash.com/photo-1607083206325-caf1edba7a0f?w=400&h=300&fit=crop" alt="Promosyon 2">
+            <img class="img-thumbnail w-100"
+              src="https://images.unsplash.com/photo-1607083206325-caf1edba7a0f?w=400&h=300&fit=crop" alt="Promosyon 2">
           </a>
         </div>
         <div class="col-md-4">
           <a href="#">
-            <img class="img-thumbnail w-100" src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=400&h=300&fit=crop" alt="Promosyon 3">
+            <img class="img-thumbnail w-100"
+              src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?w=400&h=300&fit=crop" alt="Promosyon 3">
           </a>
         </div>
       </div>
@@ -1262,7 +1269,7 @@
       // Scroll to Top Functionality
       setupScrollToTop() {
         const scrollBtn = document.getElementById('scrollToTopBtn');
-        
+
         window.addEventListener('scroll', () => {
           if (window.pageYOffset > 300) {
             scrollBtn.classList.add('visible');
@@ -1308,23 +1315,23 @@
       // Product Card Interactions
       setupProductInteractions() {
         const productCards = document.querySelectorAll('.product-card');
-        
+
         productCards.forEach(card => {
           const button = card.querySelector('.product-button');
-          
+
           if (button) {
             button.addEventListener('click', (e) => {
               e.preventDefault();
-              
+
               // Add to cart animation
               button.innerHTML = '<i class="fa fa-check"></i> Eklendi!';
               button.style.background = 'var(--success)';
-              
+
               setTimeout(() => {
                 button.innerHTML = 'Sepete Ekle';
                 button.style.background = '';
               }, 2000);
-              
+
               // Show notification
               this.showNotification('Ürün sepete eklendi!', 'success');
             });
@@ -1345,7 +1352,7 @@
 
         categoryItems.forEach(item => {
           const dropdown = item.querySelector('.mega-dropdown');
-          
+
           if (dropdown) {
             item.addEventListener('mouseenter', () => {
               if (activeDropdown && activeDropdown !== dropdown) {
@@ -1471,7 +1478,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       new ModernEcommerce();
       PerformanceMonitor.init();
-      
+
       console.log('🎉 Modern E-commerce site initialized successfully!');
     });
 
@@ -1495,9 +1502,9 @@ if ('serviceWorker' in navigator) {
 }
 */
 
-  
-  
-  
+
+
+
   </script>
 </body>
 
